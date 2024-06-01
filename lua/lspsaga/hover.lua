@@ -55,9 +55,9 @@ end
 
 function hover:open_floating_preview(content, option_fn)
   local new = {}
-  local max_float_width = math.floor(vim.o.columns * config.hover.max_width)
+  local max_float_width = math.floor(config.hover.max_width)
   local max_content_len = util.get_max_content_length(content)
-  local max_height = math.floor(vim.o.lines * config.hover.max_height)
+  local max_height = math.floor(config.hover.max_height)
 
   local float_option = {
     width = math.min(max_float_width, max_content_len),
@@ -115,7 +115,7 @@ function hover:open_floating_preview(content, option_fn)
     end
   end
 
-  local increase = util.win_height_increase(new, config.hover.max_width)
+  local increase = util.win_height_increase(new, config.hover.max_width / vim.o.columns)
   float_option.height = math.min(max_height, #new + increase)
 
   if option_fn then

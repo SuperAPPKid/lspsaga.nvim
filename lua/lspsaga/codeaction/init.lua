@@ -56,7 +56,7 @@ function act:action_callback(tuples, enriched_ctx)
     content[#content + 1] = action_title
   end
 
-  local max_height = math.floor(api.nvim_win_get_height(0) * config.code_action.max_height)
+  local max_height = math.floor(config.code_action.max_height)
 
   local float_opt = {
     height = math.min(#content, max_height),
