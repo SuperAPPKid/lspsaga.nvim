@@ -52,7 +52,9 @@ function fd:init_layout()
         ['modifiable'] = true,
       })
       :winopt('wrap', false)
-      :right()
+      :right({
+        width = math.floor(WIDTH * (1 - config.finder.left_width)),
+      })
       :bufopt({
         ['buftype'] = 'nofile',
         ['bufhidden'] = 'wipe',
