@@ -18,8 +18,8 @@ local default_config = {
     use_nerd = true,
   },
   hover = {
-    max_width = 0.9,
-    max_height = 0.8,
+    max_width = 100,
+    max_height = 30,
     open_link = 'gx',
     open_cmd = '!chrome',
   },
@@ -47,7 +47,7 @@ local default_config = {
     show_server_name = false,
     extend_gitsigns = false,
     only_in_cursor = true,
-    max_height = 0.3,
+    max_height = 20,
     cursorline = true,
     keys = {
       quit = 'q',
@@ -72,8 +72,9 @@ local default_config = {
   },
   request_timeout = 2000,
   finder = {
-    max_height = 0.5,
-    left_width = 0.4,
+    width = 105,
+    height = 25,
+    left_width = 0.3,
     methods = {},
     default = 'ref+imp',
     layout = 'float',
@@ -95,8 +96,8 @@ local default_config = {
     },
   },
   definition = {
-    width = 0.6,
-    height = 0.5,
+    width = 100,
+    height = 25,
     save_pos = false,
     keys = {
       edit = '<C-o>',
