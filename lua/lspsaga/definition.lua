@@ -137,8 +137,8 @@ function def:create_win(bufnr, root_dir)
 
   if not self.list or vim.tbl_isempty(self.list) then
     local float_opt = {
-      width = math.floor(api.nvim_win_get_width(0) * config.definition.width),
-      height = math.floor(api.nvim_win_get_height(0) * config.definition.height),
+      width = math.floor(config.definition.width),
+      height = math.floor(config.definition.height),
       bufnr = bufnr,
     }
     if config.ui.title then
