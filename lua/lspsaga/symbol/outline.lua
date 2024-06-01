@@ -87,7 +87,7 @@ local function outline_normal_win()
       ['cursorline'] = false,
       ['winfixwidth'] = true,
       ['winhl'] = 'Normal:OutlineNormal',
-      ['stc'] = '',
+      ['foldenable'] = false,
     })
     :wininfo()
 end
