@@ -153,6 +153,8 @@ local default_config = {
   },
   callhierarchy = {
     layout = 'float',
+    width = 105,
+    height = 25,
     left_width = 0.2,
     keys = {
       edit = 'e',

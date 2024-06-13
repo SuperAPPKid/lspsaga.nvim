@@ -27,7 +27,7 @@ function ch:clean()
     end
     if node.value.bufnr and api.nvim_buf_is_valid(node.value.bufnr) and node.value.rendered then
       api.nvim_buf_clear_namespace(node.value.bufnr, ns, 0, -1)
-      pcall(api.nvim_buf_del_keymap, node.value.bufnr, 'n', config.finder.keys.close)
+      pcall(api.nvim_buf_del_keymap, node.value.bufnr, 'n', config.callhierarchy.keys.close)
     end
   end)
 
@@ -377,16 +377,20 @@ function ch:call_hierarchy(item, client, timer_close, curlnum)
     end
 
     if not self.left_winid or not api.nvim_win_is_valid(self.left_winid) then
-      local height = bit.rshift(vim.o.lines, 1) - 4
-      local win_width = api.nvim_win_get_width(0)
+      local WIDTH = config.callhierarchy.width
       self.left_bufnr, self.left_winid, self.right_bufnr, self.right_winid = ly:new(self.layout)
-        :left(height, math.floor(win_width * config.callhierarchy.left_width))
+        :left(
+          math.floor(config.callhierarchy.height),
+          math.floor(WIDTH * config.callhierarchy.left_width)
+        )
         :bufopt({
           ['filetype'] = 'sagacallhierarchy',
           ['buftype'] = 'nofile',
           ['bufhidden'] = 'wipe',
         })
-        :right()
+        :right({
+          width = math.floor(WIDTH * (1 - config.callhierarchy.left_width)),
+        })
         :bufopt({
           ['buftype'] = 'nofile',
           ['bufhidden'] = 'wipe',
