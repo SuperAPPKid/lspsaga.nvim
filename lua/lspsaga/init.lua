@@ -169,6 +169,8 @@ local default_config = {
   },
   typehierarchy = {
     layout = 'float',
+    width = 105,
+    height = 25,
     left_width = 0.2,
     keys = {
       edit = 'e',
