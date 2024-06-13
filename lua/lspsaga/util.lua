@@ -115,10 +115,10 @@ function M.get_max_content_length(contents)
     if v:find('\n.') then
       local tbl = vim.split(v, '\n')
       vim.tbl_map(function(s)
-        table.insert(cells, #s)
+        table.insert(cells, vim.fn.strdisplaywidth(s))
       end, tbl)
     else
-      table.insert(cells, #v)
+      table.insert(cells, vim.fn.strdisplaywidth(v))
     end
   end
   table.sort(cells)
