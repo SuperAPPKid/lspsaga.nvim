@@ -103,9 +103,7 @@ local function create_preview_win(content, main_winid)
   -- Determine content width and apply constraints
   local content_width = util.get_max_content_length(content)
   local max_win_width = api.nvim_win_get_width(win_conf.win)
-  opt.width = math.min(max_win_width, math.max(content_width, win_conf.width))
-
-  -- Get dimensions of the main window
+  opt.width = math.max(max_win_width, content_width)
   local winheight = api.nvim_win_get_height(win_conf.win)
   local margin = config.ui.border == 'none' and 0 or 2
   local north = win_conf.anchor:sub(1, 1) == 'N'
@@ -204,7 +202,7 @@ local function action_preview(main_winid, main_buf, tuple)
     win_conf.height = math.min(win_conf.height, #diff)
     local new_width = util.get_max_content_length(diff)
     local main_width = api.nvim_win_get_width(main_winid)
-    win_conf.width = new_width < main_width and main_width or new_width
+    win_conf.width = math.max(main_width, new_width)
     api.nvim_win_set_config(preview_winid, win_conf)
   end
 
