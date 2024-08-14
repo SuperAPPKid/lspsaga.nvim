@@ -278,7 +278,7 @@ function sd:toggle_or_jump(entrys_list)
       wins[#wins] = 0
     end
     api.nvim_win_set_cursor(wins[#wins], { tonumber(ln), tonumber(col) - 1 })
-    beacon({ tonumber(ln) - 1, 0 }, #api.nvim_get_current_line())
+    beacon({ tonumber(ln) - 1, 0 }, api.nvim_win_get_width(0) - vim.fn.wincol() + vim.fn.col('.'))
     clean_ctx()
     return
   end
