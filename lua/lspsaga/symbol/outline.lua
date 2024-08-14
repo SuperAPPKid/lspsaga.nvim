@@ -188,7 +188,10 @@ function ot:parse(symbols, curline)
     api.nvim_win_set_cursor(self.winid, pos)
     if config.outline.layout == 'normal' then
       api.nvim_win_call(self.winid, function()
-        beacon({ pos[1] - 1, pos[2] }, #api.nvim_get_current_line())
+        beacon(
+          { pos[1] - 1, pos[2] },
+          api.nvim_win_get_width(0) - vim.fn.wincol() + vim.fn.col('.') - pos[2]
+        )
       end)
     end
   end
@@ -332,8 +335,7 @@ function ot:toggle_or_jump()
 
   api.nvim_set_current_win(callerwinid)
   api.nvim_win_set_cursor(callerwinid, pos)
-  local width = #api.nvim_get_current_line()
-  beacon({ pos[1] - 1, 0 }, width)
+  beacon({ pos[1] - 1, 0 }, api.nvim_win_get_width(0) - vim.fn.wincol() + vim.fn.col('.'))
 end
 
 function ot:calc_preview_win_spec(lines)
@@ -561,8 +563,7 @@ function ot:keymap()
 
     api.nvim_set_current_win(callerwinid)
     api.nvim_win_set_cursor(callerwinid, pos)
-    local width = #api.nvim_get_current_line()
-    beacon({ pos[1] - 1, 0 }, width)
+    beacon({ pos[1] - 1, 0 }, api.nvim_win_get_width(0) - vim.fn.wincol() + vim.fn.col('.'))
   end)
 
   util.map_keys(self.bufnr, config.outline.keys.quit, function()
