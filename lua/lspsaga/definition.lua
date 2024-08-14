@@ -105,8 +105,8 @@ function def:apply_maps(bufnr)
           }
         end
         api.nvim_win_set_cursor(0, pos)
-        local width = #api.nvim_get_current_line()
-        beacon({ pos[1] - 1, vim.fn.col('.') }, width)
+        vim.cmd('redraw')
+        beacon({ pos[1] - 1, vim.fn.col('.') }, api.nvim_win_get_width(0) - vim.fn.wincol())
       end)
     else
       util.map_keys(bufnr, map, function()
@@ -317,8 +317,8 @@ function def:goto_handler(result, context, args)
     range.start.line + 1,
     lsp.util._get_line_byte_from_position(target_bufnr, range.start, client.offset_encoding),
   })
-  local width = #api.nvim_get_current_line()
-  beacon({ range.start.line, vim.fn.col('.') }, width)
+  vim.cmd('redraw')
+  beacon({ range.start.line, vim.fn.col('.') }, api.nvim_win_get_width(0) - vim.fn.wincol())
 end
 
 function def:init(method, jump_T, args)

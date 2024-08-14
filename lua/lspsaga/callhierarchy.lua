@@ -261,7 +261,7 @@ function ch:keymap()
         },
       }, client.offset_encoding)
       restore()
-      beacon({ start.line, 0 }, #api.nvim_get_current_line())
+      beacon({ start.line, 0 }, api.nvim_win_get_width(0) - vim.fn.wincol() + vim.fn.col('.'))
     end)
   end
 end
