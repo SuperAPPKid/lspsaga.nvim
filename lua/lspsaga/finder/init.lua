@@ -350,7 +350,7 @@ function fd:toggle_or_open()
       restore()
       api.nvim_set_current_win(callerwinid)
       api.nvim_win_set_cursor(callerwinid, pos)
-      beacon({ pos[1] - 1, 0 }, #api.nvim_get_current_line())
+      beacon({ pos[1] - 1, 0 }, api.nvim_win_get_width(0) - vim.fn.wincol() + vim.fn.col('.'))
       return
     end
 
@@ -450,7 +450,7 @@ function fd:apply_maps()
         end
         restore()
         api.nvim_win_set_cursor(0, pos)
-        beacon({ pos[1] - 1, 0 }, #api.nvim_get_current_line())
+        beacon({ pos[1] - 1, 0 }, api.nvim_win_get_width(0) - vim.fn.wincol() + vim.fn.col('.'))
         return
       end
 

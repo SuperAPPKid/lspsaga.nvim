@@ -272,7 +272,7 @@ function diag:goto_pos(pos, opts)
     },
   }, opts or {}))
   util.valid_markdown_parser()
-  require('lspsaga.beacon').jump_beacon({ entry.lnum, entry.col }, #api.nvim_get_current_line())
+  require('lspsaga.beacon').jump_beacon({ entry.lnum, entry.col }, api.nvim_win_get_width(0) - vim.fn.wincol() + vim.fn.col('.') - entry.col)
   vim.schedule(function()
     if not self:valid_win_buf() then
       return
